@@ -64,9 +64,14 @@ A configurable tool to generate random YAML data for testing and development pur
 
 ## How to Use
 
+### Local Usage
 1. Open the main index.html file in your browser
 2. Select the tool you want to use
 3. Follow the instructions on the tool's page
+
+### Live Version
+You can access the live version of these tools at:
+https://sharadregoti.github.io/tools/
 
 ## Development
 
@@ -79,3 +84,34 @@ tool-name/
 ```
 
 To add a new tool, create a new directory with the appropriate files and update the main index.html file to include a link to the new tool.
+
+## Deployment
+
+This project is deployed using GitHub Pages. The live version is available at:
+https://sharadregoti.github.io/tools/
+
+### Deployment Process
+
+1. The site is deployed from the `gh-pages` branch of the repository
+2. Any changes pushed to this branch will be automatically deployed
+
+### Updating the Live Site
+
+To update the live site after making changes:
+
+1. Make your changes to the code
+2. Commit and push to the master branch:
+   ```
+   git add .
+   git commit -m "Your commit message"
+   git push origin master
+   ```
+3. Update the gh-pages branch:
+   ```
+   git checkout gh-pages
+   git merge master
+   git push origin gh-pages
+   git checkout master
+   ```
+
+This process ensures that your live site stays in sync with your latest development changes.
