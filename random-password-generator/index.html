@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online Random Password Generator tool. Generate secure, customizable passwords for your accounts and applications.">
+    <meta name="keywords" content="Random Password, Password Generator, secure password, strong password, password tool, security">
+    <meta name="author" content="Random Password Generator">
+    <meta name="robots" content="index, follow">
+    <title>Random Password Generator | Free Online Tool</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom styles -->
+    <style>
+        .password-display {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+        input[type="number"] {
+            width: 100%;
+            background-color: #1e293b;
+            color: white;
+            border: 1px solid #475569;
+            border-radius: 0.375rem;
+            padding: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-purple-800 text-white p-6 shadow-md">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold">Random Password Generator</h1>
+            <p class="mt-2">A simple, fast and free online tool to generate secure passwords</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 mt-8">
+        <div class="grid grid-cols-1 gap-6">
+            <!-- Password Display Section -->
+            <div class="bg-slate-900 p-6 rounded-lg shadow-md">
+                <div class="flex items-center justify-between">
+                    <div class="password-display text-xl font-mono text-white overflow-x-auto whitespace-nowrap flex-grow mr-4" id="passwordDisplay">
+                        Generate a password
+                    </div>
+                    <div class="flex space-x-2">
+                        <button id="refreshBtn" class="bg-slate-700 hover:bg-slate-600 text-white p-2 rounded focus:outline-none focus:ring-2 focus:ring-slate-400" title="Generate New Password">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                        </button>
+                        <button id="copyBtn" class="bg-slate-700 hover:bg-slate-600 text-white p-2 rounded focus:outline-none focus:ring-2 focus:ring-slate-400" title="Copy to Clipboard">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Options Section -->
+            <div class="bg-slate-900 text-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-6">Options</h2>
+                
+                <!-- Length Section -->
+                <div class="mb-6">
+                    <label for="passwordLength" class="block text-lg font-medium mb-2">Length</label>
+                    <input type="range" id="passwordLength" min="5" max="128" value="14" class="mb-2">
+                    <input type="number" id="passwordLengthNumber" min="5" max="128" value="14" class="w-full">
+                    <p class="text-gray-400 mt-2">Value must be between 5 and 128. Use 14 characters or more to generate a strong password.</p>
+                </div>
+                
+                <!-- Character Types Section -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium mb-3">Include</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="includeUppercase" class="w-5 h-5 text-blue-500 rounded" checked>
+                            <label for="includeUppercase" class="ml-2">A-Z</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="includeLowercase" class="w-5 h-5 text-blue-500 rounded" checked>
+                            <label for="includeLowercase" class="ml-2">a-z</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="includeNumbers" class="w-5 h-5 text-blue-500 rounded" checked>
+                            <label for="includeNumbers" class="ml-2">0-9</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="includeSymbols" class="w-5 h-5 text-blue-500 rounded" checked>
+                            <label for="includeSymbols" class="ml-2">!@#$%^&*</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Minimum Requirements Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="minNumbers" class="block text-lg font-medium mb-2">Minimum numbers</label>
+                        <input type="number" id="minNumbers" min="0" max="128" value="1" class="w-full">
+                    </div>
+                    <div>
+                        <label for="minSymbols" class="block text-lg font-medium mb-2">Minimum special</label>
+                        <input type="number" id="minSymbols" min="0" max="128" value="1" class="w-full">
+                    </div>
+                </div>
+                
+                <!-- Additional Options -->
+                <div class="mb-6">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="avoidAmbiguous" class="w-5 h-5 text-blue-500 rounded">
+                        <label for="avoidAmbiguous" class="ml-2">Avoid ambiguous characters (1, l, I, 0, O, etc.)</label>
+                    </div>
+                </div>
+                
+                <!-- Generate Button -->
+                <button id="generateBtn" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                    Generate Password
+                </button>
+            </div>
+
+            <!-- Password Strength Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4">Password Strength</h2>
+                <div class="mb-4">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="strengthBar" class="bg-red-500 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+                <p id="strengthText" class="text-gray-700">Generate a password to see its strength</p>
+            </div>
+
+            <!-- How to Use Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4">How to Use</h2>
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Configure your password requirements:
+                        <ul class="list-disc pl-6 mt-1">
+                            <li>Set the desired password length</li>
+                            <li>Select which character types to include</li>
+                            <li>Specify minimum requirements for numbers and special characters</li>
+                            <li>Choose whether to avoid ambiguous characters</li>
+                        </ul>
+                    </li>
+                    <li>Click the "Generate Password" button.</li>
+                    <li>Copy the generated password using the copy button.</li>
+                    <li>Use the refresh button to generate a new password with the same settings.</li>
+                </ol>
+            </div>
+
+            <!-- Password Security Tips -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4">Password Security Tips</h2>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Use a different password for each account.</li>
+                    <li>Make passwords at least 14 characters long.</li>
+                    <li>Include a mix of uppercase letters, lowercase letters, numbers, and special characters.</li>
+                    <li>Avoid using personal information in your passwords.</li>
+                    <li>Consider using a password manager to store your passwords securely.</li>
+                    <li>Change your passwords periodically, especially for important accounts.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>© 2023 Random Password Generator. All rights reserved.</p>
+            <p class="mt-2">A free online tool to generate secure passwords.</p>
+            <p class="mt-4">
+                <a href="../index.html" class="text-blue-300 hover:text-blue-100">← Back to Tools Collection</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

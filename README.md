@@ -55,6 +55,21 @@ A configurable tool to generate random YAML data for testing and development pur
   - Copy to clipboard functionality
   - SEO-friendly
 
+### 5. Random Password Generator
+
+A secure tool to generate strong, customizable passwords for your accounts and applications.
+
+- **Features**:
+  - Adjustable password length (5-128 characters)
+  - Character type selection (uppercase, lowercase, numbers, special characters)
+  - Minimum requirements for numbers and special characters
+  - Option to avoid ambiguous characters
+  - Password strength indicator
+  - Real-time password generation
+  - Copy to clipboard functionality
+  - Security tips and best practices
+  - SEO-friendly
+
 ## Technologies Used
 
 - HTML5
