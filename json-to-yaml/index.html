@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online JSON to YAML converter tool. Convert JSON to YAML format easily with this simple, fast and free online tool.">
+    <meta name="keywords" content="JSON to YAML, YAML converter, JSON converter, online converter, free converter, JSON, YAML">
+    <meta name="author" content="JSON to YAML Converter">
+    <meta name="robots" content="index, follow">
+    <title>JSON to YAML Converter | Free Online Tool</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom styles -->
+    <style>
+        .editor {
+            min-height: 300px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-blue-600 text-white p-6 shadow-md">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold">JSON to YAML Converter</h1>
+            <p class="mt-2">A simple, fast and free online tool to convert JSON to YAML format</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 mt-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- JSON Input Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">JSON Input</h2>
+                <div class="mb-4">
+                    <textarea id="jsonInput" class="w-full p-4 border border-gray-300 rounded editor font-mono text-sm" placeholder="Paste your JSON here..."></textarea>
+                </div>
+                <div class="flex space-x-2">
+                    <button id="convertBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Convert to YAML
+                    </button>
+                    <button id="clearJsonBtn" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Clear
+                    </button>
+                    <button id="sampleJsonBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Load Sample
+                    </button>
+                </div>
+            </div>
+
+            <!-- YAML Output Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">YAML Output</h2>
+                <div class="mb-4 relative">
+                    <textarea id="yamlOutput" class="w-full p-4 border border-gray-300 rounded editor font-mono text-sm" placeholder="YAML output will appear here..." readonly></textarea>
+                </div>
+                <div class="flex space-x-2">
+                    <button id="copyBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Copy to Clipboard
+                    </button>
+                    <button id="clearYamlBtn" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorContainer" class="mt-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative hidden">
+            <strong class="font-bold">Error: </strong>
+            <span id="errorMessage"></span>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-12 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">How to Use</h2>
+            <ol class="list-decimal pl-6 space-y-2">
+                <li>Paste your JSON data into the input field on the left.</li>
+                <li>Click the "Convert to YAML" button.</li>
+                <li>The converted YAML will appear in the output field on the right.</li>
+                <li>Use the "Copy to Clipboard" button to copy the result.</li>
+            </ol>
+        </div>
+
+        <!-- About JSON and YAML Section -->
+        <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">About JSON and YAML</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">JSON (JavaScript Object Notation)</h3>
+                    <p>JSON is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate. It is based on a subset of JavaScript language and is often used for transmitting data in web applications.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">YAML (YAML Ain't Markup Language)</h3>
+                    <p>YAML is a human-friendly data serialization standard that is commonly used for configuration files and in applications where data is being stored or transmitted. YAML is designed to be easily readable by humans and works well with modern programming languages.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>© 2023 JSON to YAML Converter. All rights reserved.</p>
+            <p class="mt-2">A free online tool to convert JSON to YAML format.</p>
+        </div>
+    </footer>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online Random YAML Generator tool. Generate random YAML data with configurable options for testing and development.">
+    <meta name="keywords" content="Random YAML, YAML Generator, test data, mock data, YAML, random data generator, development tools">
+    <meta name="author" content="Random YAML Generator">
+    <meta name="robots" content="index, follow">
+    <title>Random YAML Generator | Free Online Tool</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- js-yaml library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <!-- Custom styles -->
+    <style>
+        .editor {
+            min-height: 300px;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+        .range-value {
+            width: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-yellow-600 text-white p-6 shadow-md">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold">Random YAML Generator</h1>
+            <p class="mt-2">A simple, fast and free online tool to generate random YAML data</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 mt-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Configuration Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Configuration</h2>
+                
+                <div class="mb-4">
+                    <label for="topLevelFields" class="block text-sm font-medium text-gray-700 mb-1">Number of Top-Level Fields</label>
+                    <div class="flex items-center">
+                        <input type="range" id="topLevelFields" min="1" max="20" value="5" class="mr-2">
+                        <span id="topLevelFieldsValue" class="range-value">5</span>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="nestingLevel" class="block text-sm font-medium text-gray-700 mb-1">Maximum Nesting Level</label>
+                    <div class="flex items-center">
+                        <input type="range" id="nestingLevel" min="0" max="5" value="2" class="mr-2">
+                        <span id="nestingLevelValue" class="range-value">2</span>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="arrayLength" class="block text-sm font-medium text-gray-700 mb-1">Maximum Array Length</label>
+                    <div class="flex items-center">
+                        <input type="range" id="arrayLength" min="1" max="20" value="5" class="mr-2">
+                        <span id="arrayLengthValue" class="range-value">5</span>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="stringLength" class="block text-sm font-medium text-gray-700 mb-1">Maximum String Length</label>
+                    <div class="flex items-center">
+                        <input type="range" id="stringLength" min="3" max="50" value="10" class="mr-2">
+                        <span id="stringLengthValue" class="range-value">10</span>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Include Types</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <input type="checkbox" id="includeStrings" checked>
+                            <label for="includeStrings" class="ml-1">Strings</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="includeNumbers" checked>
+                            <label for="includeNumbers" class="ml-1">Numbers</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="includeBooleans" checked>
+                            <label for="includeBooleans" class="ml-1">Booleans</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="includeArrays" checked>
+                            <label for="includeArrays" class="ml-1">Arrays</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="includeObjects" checked>
+                            <label for="includeObjects" class="ml-1">Objects</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="includeNull" checked>
+                            <label for="includeNull" class="ml-1">Null</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">YAML Options</label>
+                    <div>
+                        <input type="checkbox" id="useFlowStyle">
+                        <label for="useFlowStyle" class="ml-1">Use Flow Style (JSON-like)</label>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-2">
+                    <button id="generateBtn" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Generate YAML
+                    </button>
+                    <button id="resetBtn" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Reset Options
+                    </button>
+                </div>
+            </div>
+
+            <!-- YAML Output Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Generated YAML</h2>
+                <div class="mb-4 relative">
+                    <textarea id="yamlOutput" class="w-full p-4 border border-gray-300 rounded editor font-mono text-sm" placeholder="Generated YAML will appear here..." readonly></textarea>
+                </div>
+                <div class="flex space-x-2">
+                    <button id="copyBtn" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Copy to Clipboard
+                    </button>
+                    <button id="clearBtn" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorContainer" class="mt-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative hidden">
+            <strong class="font-bold">Error: </strong>
+            <span id="errorMessage"></span>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-12 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">How to Use</h2>
+            <ol class="list-decimal pl-6 space-y-2">
+                <li>Configure the options for your random YAML data:
+                    <ul class="list-disc pl-6 mt-1">
+                        <li>Number of top-level fields</li>
+                        <li>Maximum nesting level</li>
+                        <li>Maximum array length</li>
+                        <li>Maximum string length</li>
+                        <li>Types to include</li>
+                        <li>YAML style options</li>
+                    </ul>
+                </li>
+                <li>Click the "Generate YAML" button.</li>
+                <li>The randomly generated YAML will appear in the output field on the right.</li>
+                <li>Use the "Copy to Clipboard" button to copy the result.</li>
+            </ol>
+        </div>
+
+        <!-- About Random YAML Generator Section -->
+        <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">About Random YAML Generator</h2>
+            <p class="mb-4">This tool generates random YAML data based on your configuration. It's useful for:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Creating test data for applications</li>
+                <li>Populating configuration files with sample data</li>
+                <li>Testing YAML parsers</li>
+                <li>Prototyping and development</li>
+                <li>Learning YAML structure</li>
+            </ul>
+            <p class="mt-4">The generated YAML is completely random and does not contain any sensitive or real data.</p>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>© 2023 Random YAML Generator. All rights reserved.</p>
+            <p class="mt-2">A free online tool to generate random YAML data.</p>
+            <p class="mt-4">
+                <a href="../index.html" class="text-blue-300 hover:text-blue-100">← Back to Tools Collection</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
