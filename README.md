@@ -85,6 +85,42 @@ A simple tool to crop and adjust images directly in your browser.
   - Mobile-friendly interface
   - SEO-friendly
 
+### 7. UUID Generator
+
+Generate Universally Unique Identifiers (UUID v4) instantly.
+
+- **Features**:
+  - Adjustable count (generate multiple UUIDs at once)
+  - Option for hyphenated or non-hyphenated format
+  - Copy individual UUIDs to clipboard
+  - Copy all generated UUIDs to clipboard
+  - SEO-friendly
+
+### 8. Base64 Encoder/Decoder
+
+Convert text and files to/from Base64 format.
+
+- **Features**:
+  - Text encoding and decoding
+  - File encoding and decoding
+  - Drag and drop file support
+  - Auto-detection of valid Base64 input
+  - Copy results to clipboard
+  - Download decoded files
+  - SEO-friendly
+
+### 9. Lorem Ipsum Generator
+
+Generate dummy text for your designs, layouts, and mockups.
+
+- **Features**:
+  - Generate paragraphs, sentences, or words
+  - Choose between different text styles (standard Lorem Ipsum, tech jargon, startup buzzwords)
+  - Option to start with the classic "Lorem ipsum dolor sit amet"
+  - Include HTML tags for easy integration into web projects
+  - Copy to clipboard functionality
+  - SEO-friendly
+
 ## Technologies Used
 
 - HTML5

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate Lorem Ipsum dummy text for your designs, layouts, and mockups with this free online tool.">
+    <meta name="keywords" content="lorem ipsum generator, dummy text, placeholder text, filler text, design text, mockup text, layout text">
+    <meta name="author" content="Tools Collection">
+    <meta name="robots" content="index, follow">
+    <title>Lorem Ipsum Generator | Generate Dummy Text</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-pink-600 text-white p-6 shadow-md">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold">Lorem Ipsum Generator</h1>
+                    <p class="mt-2">Generate dummy text for your designs and layouts</p>
+                </div>
+                <a href="../index.html" class="bg-white text-pink-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                    ← Back to Tools
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 mt-8">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-6">Generate Lorem Ipsum</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Options Panel -->
+                <div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-medium mb-2">Type of Content:</label>
+                        <div class="flex space-x-4">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="content-type" value="paragraphs" checked class="form-radio h-5 w-5 text-pink-600">
+                                <span class="ml-2 text-gray-700">Paragraphs</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="content-type" value="sentences" class="form-radio h-5 w-5 text-pink-600">
+                                <span class="ml-2 text-gray-700">Sentences</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="content-type" value="words" class="form-radio h-5 w-5 text-pink-600">
+                                <span class="ml-2 text-gray-700">Words</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="content-count" class="block text-gray-700 font-medium mb-2">Number of <span id="content-type-label">Paragraphs</span>:</label>
+                        <div class="flex items-center">
+                            <input type="number" id="content-count" min="1" max="50" value="5" class="w-24 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                            <div class="ml-4 text-gray-500 text-sm">
+                                <span id="min-max-hint">Min: 1, Max: 50</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-medium mb-2">Text Style:</label>
+                        <select id="text-style" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                            <option value="standard">Standard Lorem Ipsum</option>
+                            <option value="tech">Tech Jargon</option>
+                            <option value="startup">Startup Buzzwords</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-medium mb-2">Options:</label>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="start-with-lorem" checked class="form-checkbox h-5 w-5 text-pink-600">
+                                <span class="ml-2 text-gray-700">Start with "Lorem ipsum dolor sit amet"</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="include-html" class="form-checkbox h-5 w-5 text-pink-600">
+                                <span class="ml-2 text-gray-700">Include HTML tags (<p> for paragraphs)</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button id="generate-btn" class="bg-pink-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-pink-700 transition-colors">
+                        Generate Lorem Ipsum
+                    </button>
+                </div>
+                
+                <!-- Preview Panel -->
+                <div>
+                    <div class="mb-4 flex justify-between items-center">
+                        <h3 class="text-lg font-semibold">Preview</h3>
+                        <button id="copy-btn" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-300 transition-colors">
+                            Copy to Clipboard
+                        </button>
+                    </div>
+                    <div id="preview-container" class="bg-gray-50 p-4 rounded-lg h-64 overflow-auto border border-gray-200">
+                        <p class="text-gray-500 italic">Generated text will appear here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold mb-4">About Lorem Ipsum</h2>
+            <p class="mb-4">Lorem Ipsum is dummy text used in the design, printing, and typesetting industry. It has been the industry's standard dummy text since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <p class="mb-4">Using Lorem Ipsum for mockups and layouts offers several advantages:</p>
+            <ul class="list-disc pl-6 mb-4 space-y-2">
+                <li>It provides a realistic distribution of letters and words</li>
+                <li>It doesn't distract viewers with meaningful content</li>
+                <li>It helps focus on visual elements rather than text content</li>
+                <li>It's a universally recognized placeholder text</li>
+            </ul>
+            <p>This tool allows you to generate different types of Lorem Ipsum text, including standard Latin text, tech jargon, and startup buzzwords, making it versatile for various design contexts.</p>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>© 2023 Tools Collection. All rights reserved.</p>
+            <p class="mt-2">A collection of free online tools to help with everyday tasks.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

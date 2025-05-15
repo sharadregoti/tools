@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate Universally Unique Identifiers (UUID v4) instantly with this free online tool.">
+    <meta name="keywords" content="UUID generator, UUID v4, unique identifier, GUID, online tool, developer tool">
+    <meta name="author" content="Tools Collection">
+    <meta name="robots" content="index, follow">
+    <title>UUID Generator | Generate UUIDs Instantly</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-red-600 text-white p-6 shadow-md">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold">UUID Generator</h1>
+                    <p class="mt-2">Generate Universally Unique Identifiers (UUID v4) instantly</p>
+                </div>
+                <a href="../index.html" class="bg-white text-red-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                    ← Back to Tools
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 mt-8">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Generate UUIDs</h2>
+            
+            <div class="mb-6">
+                <label for="uuid-count" class="block text-gray-700 font-medium mb-2">Number of UUIDs to generate:</label>
+                <div class="flex items-center">
+                    <input type="number" id="uuid-count" min="1" max="100" value="1" class="w-24 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                    <div class="ml-4">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" id="hyphenated" checked class="form-checkbox h-5 w-5 text-red-600">
+                            <span class="ml-2 text-gray-700">Include hyphens</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="generate-btn" class="bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors">
+                Generate UUID(s)
+            </button>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold">Generated UUIDs</h2>
+                <button id="copy-all-btn" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors hidden">
+                    Copy All
+                </button>
+            </div>
+            
+            <div id="results-container" class="space-y-4">
+                <p class="text-gray-500 italic">Click the "Generate UUID(s)" button to create UUIDs.</p>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="mt-8 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold mb-4">About UUID Generator</h2>
+            <p class="mb-4">A UUID (Universally Unique Identifier) is a 128-bit identifier that is unique across both space and time, with minimal effort to avoid generating duplicates. This tool generates version 4 UUIDs, which are randomly generated.</p>
+            <p class="mb-4">UUIDs are commonly used in software development for:</p>
+            <ul class="list-disc pl-6 mb-4 space-y-2">
+                <li>Database primary keys</li>
+                <li>Distributed systems where unique identification is critical</li>
+                <li>Session IDs in web applications</li>
+                <li>Transaction IDs</li>
+                <li>Any scenario where a unique identifier is needed</li>
+            </ul>
+            <p>This tool allows you to generate multiple UUIDs at once and choose whether to include hyphens in the format.</p>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>© 2023 Tools Collection. All rights reserved.</p>
+            <p class="mt-2">A collection of free online tools to help with everyday tasks.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
