@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online Image Cropper tool. Upload or paste an image, crop it to your desired size, and download the result.">
+    <meta name="keywords" content="image cropper, crop image, resize image, image editor, online cropper, free image tool">
+    <meta name="author" content="Image Cropper">
+    <meta name="robots" content="index, follow">
+    <title>Image Cropper | Free Online Tool</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Cropper.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <!-- Custom styles -->
+    <style>
+        .image-container {
+            max-height: 500px;
+            margin-bottom: 1rem;
+        }
+        #preview {
+            display: block;
+            max-width: 100%;
+            max-height: 500px;
+        }
+        .cropper-container {
+            margin: 0 auto;
+        }
+        .hidden {
+            display: none;
+        }
+        .dropzone {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .dropzone.dragover {
+            background-color: rgba(74, 222, 128, 0.1);
+            border-color: #4ade80;
+        }
+        .aspect-ratio-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .aspect-ratio-option {
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .aspect-ratio-option.active {
+            background-color: #4f46e5;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-teal-600 text-white p-6 shadow-md">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold">Image Cropper</h1>
+            <p class="mt-2">A simple, fast and free online tool to crop your images</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 mt-8">
+        <div class="grid grid-cols-1 gap-6">
+            <!-- Upload Section -->
+            <div id="uploadSection" class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4">Upload Image</h2>
+                <div class="dropzone" id="dropzone">
+                    <div class="flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <p class="text-lg mb-4">Drag & drop an image here, or click to select a file</p>
+                        <p class="text-gray-500 mb-4">You can also paste an image from clipboard (Ctrl+V / Cmd+V)</p>
+                        <input type="file" id="fileInput" accept="image/*" class="hidden">
+                        <button id="selectFileBtn" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                            Select Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cropper Section (Initially Hidden) -->
+            <div id="cropperSection" class="bg-white p-6 rounded-lg shadow-md hidden">
+                <h2 class="text-2xl font-semibold mb-4">Crop Image</h2>
+                
+                <!-- Aspect Ratio Options -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium mb-2">Aspect Ratio</h3>
+                    <div class="aspect-ratio-box">
+                        <button class="aspect-ratio-option bg-gray-200 hover:bg-gray-300" data-ratio="free">Free</button>
+                        <button class="aspect-ratio-option bg-gray-200 hover:bg-gray-300" data-ratio="1/1">1:1</button>
+                        <button class="aspect-ratio-option bg-gray-200 hover:bg-gray-300" data-ratio="4/3">4:3</button>
+                        <button class="aspect-ratio-option bg-gray-200 hover:bg-gray-300" data-ratio="16/9">16:9</button>
+                        <button class="aspect-ratio-option bg-gray-200 hover:bg-gray-300" data-ratio="2/3">2:3</button>
+                    </div>
+                </div>
+                
+                <!-- Image Container -->
+                <div class="image-container">
+                    <img id="preview" src="" alt="Preview">
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap gap-4">
+                    <button id="cropBtn" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Crop Image
+                    </button>
+                    <button id="rotateLeftBtn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Rotate Left
+                    </button>
+                    <button id="rotateRightBtn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Rotate Right
+                    </button>
+                    <button id="resetBtn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Reset
+                    </button>
+                    <button id="newImageBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Upload New Image
+                    </button>
+                </div>
+            </div>
+
+            <!-- Result Section (Initially Hidden) -->
+            <div id="resultSection" class="bg-white p-6 rounded-lg shadow-md hidden">
+                <h2 class="text-2xl font-semibold mb-4">Cropped Image</h2>
+                <div class="mb-6">
+                    <img id="croppedImage" class="max-w-full mx-auto border" alt="Cropped Image">
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <a id="downloadBtn" href="#" download="cropped-image.png" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Download Image
+                    </a>
+                    <button id="cropAnotherBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Crop Again
+                    </button>
+                    <button id="uploadAnotherBtn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150">
+                        Upload New Image
+                    </button>
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorContainer" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative hidden">
+                <strong class="font-bold">Error: </strong>
+                <span id="errorMessage"></span>
+            </div>
+
+            <!-- How to Use Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4">How to Use</h2>
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Upload an image by dragging and dropping, selecting a file, or pasting from clipboard.</li>
+                    <li>Select an aspect ratio for cropping (optional).</li>
+                    <li>Adjust the crop area by dragging the corners or edges.</li>
+                    <li>Use the rotate buttons if needed.</li>
+                    <li>Click the "Crop Image" button when you're satisfied with the selection.</li>
+                    <li>Download the cropped image.</li>
+                </ol>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4">Tips</h2>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>For precise cropping, zoom in by scrolling with your mouse wheel.</li>
+                    <li>You can move the image within the crop box by dragging it.</li>
+                    <li>The "Free" aspect ratio option allows you to create a custom-sized crop.</li>
+                    <li>Common aspect ratios are provided for convenience (1:1 for square, 16:9 for widescreen, etc.).</li>
+                    <li>All processing happens in your browser - your images are never uploaded to a server.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>© 2023 Image Cropper. All rights reserved.</p>
+            <p class="mt-2">A free online tool to crop your images.</p>
+            <p class="mt-4">
+                <a href="../index.html" class="text-blue-300 hover:text-blue-100">← Back to Tools Collection</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Cropper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

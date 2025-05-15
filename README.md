@@ -70,6 +70,21 @@ A secure tool to generate strong, customizable passwords for your accounts and a
   - Security tips and best practices
   - SEO-friendly
 
+### 6. Image Cropper
+
+A simple tool to crop and adjust images directly in your browser.
+
+- **Features**:
+  - Upload images via drag & drop, file selection, or clipboard paste
+  - Multiple aspect ratio options (free, 1:1, 4:3, 16:9, 2:3)
+  - Rotate image functionality
+  - Zoom and pan capabilities
+  - High-quality image output
+  - Download cropped images
+  - Client-side processing (no server uploads)
+  - Mobile-friendly interface
+  - SEO-friendly
+
 ## Technologies Used
 
 - HTML5
