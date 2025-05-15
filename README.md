@@ -121,6 +121,60 @@ Generate dummy text for your designs, layouts, and mockups.
   - Copy to clipboard functionality
   - SEO-friendly
 
+### 10. Case Converter
+
+Convert text between different case formats.
+
+- **Features**:
+  - Convert to camelCase, snake_case, kebab-case, PascalCase
+  - Convert to UPPERCASE, lowercase, Title Case, Sentence case
+  - Convert to CONSTANT_CASE
+  - Real-time conversion as you type
+  - Keyboard shortcut for quick copying (Ctrl+Shift+C)
+  - Intelligent handling of various input formats
+  - SEO-friendly
+
+### 11. URL Encoder/Decoder
+
+Encode and decode URLs and query parameters.
+
+- **Features**:
+  - Component encoding/decoding (encodeURIComponent/decodeURIComponent)
+  - URI encoding/decoding (encodeURI/decodeURI)
+  - Live input/output update
+  - Special characters reference table
+  - Copy to clipboard functionality
+  - Clear UX for special characters
+  - SEO-friendly
+
+### 12. Markdown Previewer
+
+Preview Markdown in real-time with GitHub Flavored Markdown support.
+
+- **Features**:
+  - Live preview while typing
+  - Support for GitHub Flavored Markdown
+  - Dark/light mode toggle
+  - Export to HTML or PDF
+  - Comprehensive Markdown syntax guide
+  - Keyboard shortcuts for common actions
+  - Sample content to get started
+  - SEO-friendly
+
+### 13. HTML to Markdown Converter
+
+Convert HTML content to clean, readable Markdown format.
+
+- **Features**:
+  - Paste, upload, or type HTML content
+  - File upload with drag and drop support
+  - Option to sanitize HTML input
+  - Configurable conversion options (headings, code blocks, tables)
+  - Preview of converted Markdown
+  - Copy to clipboard functionality
+  - Detailed explanation of conversion features
+  - SEO-friendly
+
 ## Technologies Used
 
 - HTML5
